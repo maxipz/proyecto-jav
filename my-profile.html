@@ -27,7 +27,17 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+  <script>
+    // Verificar si el usuario está autenticado
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    // Redirigir al formulario de inicio de sesión si no está autenticado
+    if (!isLoggedIn) {
+      alert("Debes iniciar sesión para acceder a esta página.");
+      window.location.href = "login.html";
+    }
+  </script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
