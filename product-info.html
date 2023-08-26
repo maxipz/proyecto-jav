@@ -15,7 +15,7 @@
 <body>
   <script>
     // Verificar si el usuario está autenticado
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
 
     // Redirigir al formulario de inicio de sesión si no está autenticado
     if (!isLoggedIn) {

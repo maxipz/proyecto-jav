@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (username.trim() === "" || password.trim() === "") {
       alert("Por favor, completa todos los campos.");
     } else {
-      sessionStorage.setItem("username", username);
-      sessionStorage.setItem("isLoggedIn", true);
+       localStorage.setItem("username", username);
+       localStorage.setItem("isLoggedIn", true);
 
       window.location.href = "index.html"; 
     }
