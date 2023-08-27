@@ -26,13 +26,15 @@
     window.onload = function() {
 
     const userId = localStorage.getItem("username");
+    const userButton = document.getElementById("userbutton");
     const atIndex = userId.indexOf("@");
 
 if (atIndex !== -1) {
     const userName = userId.substring(0, atIndex);
-    const userButton = document.getElementById("userbutton");
-    userButton.innerHTML = "Hola, " + userName;
+    userButton.innerHTML = "Bienvenido! " + userName;
 
+}else{
+  userButton.innerHTML = "Bienvenido! " + userId;
 }};
   </script>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
