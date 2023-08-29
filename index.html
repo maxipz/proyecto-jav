@@ -12,32 +12,7 @@
 </head>
 
 <body>
-  <script>
-    // Verificar si el usuario está autenticado
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    // Redirigir al formulario de inicio de sesión si no está autenticado
-    if (!isLoggedIn) {
-      alert("Debes iniciar sesión para acceder a esta página.");
-      window.location.href = "login.html";
-    }
-    // Agarra los datos de localStorage del username y lo agrega al navbar
-    // Tambien copia el texto hasta el "@" .
-    window.onload = function() {
-
-    const userId = localStorage.getItem("username");
-    const userButton = document.getElementById("userbutton");
-    const atIndex = userId.indexOf("@");
-
-if (atIndex !== -1) {
-    const userName = userId.substring(0, atIndex);
-    userButton.innerHTML = "Bienvenido! " + userName;
-
-}else{
-  userButton.innerHTML = "Bienvenido! " + userId;
-}};
-  </script>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +88,8 @@ if (atIndex !== -1) {
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/init.js">
+  </script>
 </body>
 
 </html>

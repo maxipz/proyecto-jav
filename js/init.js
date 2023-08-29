@@ -39,3 +39,26 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+function logCheck() {
+   // Verificar si el usuario está autenticado
+   const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+   // Redirigir al formulario de inicio de sesión si no está autenticado
+   if (!isLoggedIn) {
+     alert("Debes iniciar sesión para acceder a esta página.");
+     window.location.href = "login.html";
+   }
+   
+   const userId = localStorage.getItem("username");
+   const userButton = document.getElementById("userbutton"); // Agarra los datos de localStorage del username y lo agrega al navbar
+   const atIndex = userId.indexOf("@");     // Tambien copia el texto hasta el "@" .
+
+if (atIndex !== -1) {
+   const userName = userId.substring(0, atIndex);
+   userButton.innerHTML = "Bienvenido! " + userName;
+
+}else{
+ userButton.innerHTML = "Bienvenido! " + userId;
+}};
+window.onload = logCheck();
