@@ -52,11 +52,11 @@ function logCheck() {
    
    const userId = localStorage.getItem("username");
    const userButton = document.getElementById("userbutton"); // Agarra los datos de localStorage del username y lo agrega al navbar
-   const atIndex = userId.indexOf("@");     // Tambien copia el texto hasta el "@" .
+   const atIndex = userId.indexOf("@");    
 
 if (atIndex !== -1) {
    const userName = userId.substring(0, atIndex);
-   userButton.innerHTML = "Bienvenido! " + userName;
+   userButton.innerHTML = "Bienvenido! " + userName; 
 
 }else{
  userButton.innerHTML = "Bienvenido! " + userId;
