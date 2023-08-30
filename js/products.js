@@ -2,24 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {        // Cuando carg
     let sortOrder = '';                                           // hace una variable vacia que despues la va a usar para saber si se ordena de forma ascendente/descendente
     let searchData = [];                                          // es un array vacio que se va a usar despues para mostrar los datos finales
   
-    function cargarProductos(catID) {                             // Carga un parametro ( en este caso catID que es la categoria) en un link, busca los productos que estan en el link ${catID}
-      if (catID) {
-        const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
-        fetch(url)                                                // le hace un fetch a la url de arriba ,que en este caso le hace referencia a las categorias.
-          .then(response => response.json())
-          .then(resultado => {
-            searchData = resultado.products;                       // guarda los productos de la categoria en searchData
-            mostrarHTML(searchData);                               // carga searchDAta en mostrarHTML
-          })
-          .catch(error => console.error('Ocurrió un error:', error));
-      }
-    }
-  
     function mostrarHTML(data) {
       const productosContainer = document.querySelector('.product-list');                       // agarra la product-list del html y la guarda en una variable
       const minPrice = parseFloat(document.querySelector('#rangeFilterPriceMin').value);        // agarra del html el valor  de la id #rangeFilterPRiceMin y la transforma en un float
       const maxPrice = parseFloat(document.querySelector('#rangeFilterPriceMax').value);        // agarra del html el valor  de la id #rangeFilterPRiceMax y la transforma en un float
-      const searchInput = document.querySelector('#searchInput').value.trim().toLowerCase();    // agarra del html el valor de la id #searchInput y value.trim verifica que lo que esta entrando no este vacio y .tolower case lo transforma todo en minuscula
+      const searchInput = document.querySelector('#searchInput').value.trim().toLowerCase();    // agarra del html el valor de la id #searchInput . value.trim verifica que lo que esta entrando no este vacio y .tolower case lo transforma todo en minuscula
       
   
       if (sortOrder === 'asc') {
@@ -34,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {        // Cuando carg
         const productPrice = parseFloat(product.cost);      // agarra el costo del producto,le pasa un parseFloat para que quede en decimal y lo guarda en la variable productPrice
   
         return ((isNaN(minPrice) || productPrice >= minPrice) &&       // devuelve true cuando el precio sea mayor o igual al precio minimo   
-                (isNaN(maxPrice) || productPrice <= maxPrice) &&       // cuando el precio sea menor o igual al precio maximo
+                (isNaN(maxPrice) || productPrice <= maxPrice) &&       // devuelve true cuando el precio sea menor o igual al precio maximo
                 (product.name.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput)));     // devuelve el nombre del producto o la descripcion del producto
       });
   
@@ -63,7 +50,20 @@ document.addEventListener("DOMContentLoaded", function() {        // Cuando carg
   
       productosContainer.innerHTML = htmlContent;
     }
-  
+    
+    function cargarProductos(catID) {                             // Carga un parametro ( en este caso catID que es la categoria) en un link, busca los productos que estan en el link ${catID}
+      if (catID) {
+        const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+        fetch(url)                                                // le hace un fetch a la url de arriba ,que en este caso le hace referencia a las categorias.
+          .then(response => response.json())
+          .then(resultado => {
+            searchData = resultado.products;                       // guarda los productos de la categoria en searchData
+            mostrarHTML(searchData);                               // carga searchDAta en mostrarHTML
+          })
+          .catch(error => console.error('Ocurrió un error:', error));
+      }
+    }
+
     document.querySelector('#sortAsc').addEventListener('click', () => {
       sortOrder = 'asc';
       cargarProductos(catID);
