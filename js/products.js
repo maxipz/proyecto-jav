@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {        // Cuando carg
       let filteredData = data.filter(product => {           //  va a filtar los productos en base a una funcion
         const productPrice = parseFloat(product.cost);      // agarra el costo del producto,le pasa un parseFloat para que quede en decimal y lo guarda en la variable productPrice
   
-        return ((productPrice >= minPrice) &&       // devuelve true cuando el precio sea mayor o igual al precio minimo   
-                (productPrice <= maxPrice) &&       // cuando el precio sea menor o igual al precio maximo
+        return ((isNaN(minPrice) || productPrice >= minPrice) &&       // devuelve true cuando el precio sea mayor o igual al precio minimo   
+                (isNaN(maxPrice) || productPrice <= maxPrice) &&       // cuando el precio sea menor o igual al precio maximo
                 (product.name.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput)));     // devuelve el nombre del producto o la descripcion del producto
       });
   
