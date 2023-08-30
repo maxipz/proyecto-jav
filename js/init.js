@@ -50,8 +50,8 @@ function logCheck() {
      window.location.href = "login.html";
    }
    
-   const userId = localStorage.getItem("username");
-   const userButton = document.getElementById("userbutton"); // Agarra los datos de localStorage del username y lo agrega al navbar
+   const userId = localStorage.getItem("username"); // Agarra los datos de localStorage del username y lo agrega al navbar
+   const userButton = document.getElementById("userbutton"); 
    const atIndex = userId.indexOf("@");    
 
 if (atIndex !== -1) {
