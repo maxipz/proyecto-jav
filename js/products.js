@@ -1,43 +1,41 @@
-document.addEventListener("DOMContentLoaded", function() {
-    let sortOrder = '';
-    let searchData = [];
+document.addEventListener("DOMContentLoaded", function() {        // Cuando carga la pagina
+    let sortOrder = '';                                           // hace una variable vacia que despues la va a usar para saber si se ordena de forma ascendente/descendente
+    let searchData = [];                                          // es un array vacio que se va a usar despues para mostrar los datos finales
   
-    function cargarProductos(catID) {
+    function cargarProductos(catID) {                             // Carga un parametro ( en este caso catID que es la categoria) en un link, busca los productos que estan en el link ${catID}
       if (catID) {
         const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
-        fetch(url)
+        fetch(url)                                                // le hace un fetch a la url de arriba ,que en este caso le hace referencia a las categorias.
           .then(response => response.json())
           .then(resultado => {
-            searchData = resultado.products;
-            mostrarHTML(searchData);
+            searchData = resultado.products;                       // guarda los productos de la categoria en searchData
+            mostrarHTML(searchData);                               // carga searchDAta en mostrarHTML
           })
           .catch(error => console.error('Ocurrió un error:', error));
       }
     }
   
     function mostrarHTML(data) {
-      const productosContainer = document.querySelector('.product-list');
-      const minPrice = parseFloat(document.querySelector('#rangeFilterPriceMin').value);
-      const maxPrice = parseFloat(document.querySelector('#rangeFilterPriceMax').value);
-      const searchInput = document.querySelector('#searchInput').value.trim().toLowerCase(); 
+      const productosContainer = document.querySelector('.product-list');                       // agarra la product-list del html y la guarda en una variable
+      const minPrice = parseFloat(document.querySelector('#rangeFilterPriceMin').value);        // agarra del html el valor  de la id #rangeFilterPRiceMin y la transforma en un float
+      const maxPrice = parseFloat(document.querySelector('#rangeFilterPriceMax').value);        // agarra del html el valor  de la id #rangeFilterPRiceMax y la transforma en un float
+      const searchInput = document.querySelector('#searchInput').value.trim().toLowerCase();    // agarra del html el valor de la id #searchInput y value.trim verifica que lo que esta entrando no este vacio y .tolower case lo transforma todo en minuscula
       
   
       if (sortOrder === 'asc') {
-        // data.sort((a, b) => a.name.localeCompare(b.name)); // Podemos ordenar de AZ por el nombre 
-        data.sort((a, b) => a.cost - b.cost);
-      } else if (sortOrder === 'desc') {
-        // data.sort((a, b) => b.name.localeCompare(a.name)); // Podemos ordenar de ZA por el nombre  
-        data.sort((a, b) => b.cost - a.cost);
+        data.sort((a, b) => a.cost - b.cost);       // data.sort((a, b) => a.name.localeCompare(b.name)); // Podemos ordenar de AZ por el nombre 
+      } else if (sortOrder === 'desc') { 
+        data.sort((a, b) => b.cost - a.cost);       // data.sort((a, b) => b.name.localeCompare(a.name)); // Podemos ordenar de ZA por el nombre 
       } else if (sortOrder === 'soldCount') {
-        data.sort((a, b) => b.soldCount - a.soldCount);
+        data.sort((a, b) => b.soldCount - a.soldCount);   // sortOrder lo ordena en base a la relevancia ( articulos de forma descendente )
       }
   
-      let filteredData = data.filter(product => {
-        const productPrice = parseFloat(product.cost);
+      let filteredData = data.filter(product => {           //  va a filtar los productos en base a una funcion
+        const productPrice = parseFloat(product.cost);      // agarra el costo del producto,le pasa un parseFloat para que quede en decimal y lo guarda en la variable productPrice
   
-        return ((isNaN(minPrice) || productPrice >= minPrice) &&
-                (isNaN(maxPrice) || productPrice <= maxPrice) &&
-                (product.name.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput)));
+        return ((productPrice >= minPrice) &&       // devuelve true cuando el precio sea mayor o igual al precio minimo   
+                (productPrice <= maxPrice) &&       // cuando el precio sea menor o igual al precio maximo
+                (product.name.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput)));     // devuelve el nombre del producto o la descripcion del producto
       });
   
       let htmlContent = '';
