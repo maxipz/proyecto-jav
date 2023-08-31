@@ -61,4 +61,3 @@ if (atIndex !== -1) {
 }else{
  userButton.innerHTML = "Bienvenido! " + userId;
 }};
-window.onload = logCheck();
