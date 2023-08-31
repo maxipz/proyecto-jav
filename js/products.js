@@ -2,23 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let sortOrder = '';
     let searchData = [];
   
-    function cargarProductos(catID) {
-      if (catID) {
-        const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
-        fetch(url)
-          .then(response => response.json())
-          .then(resultado => {
-            searchData = resultado.products;
-            mostrarHTML(searchData);
-          })
-          .catch(error => console.error('Ocurrió un error:', error));
-      }
-    }
-  
-    function mostrarHTML(data) {
+   function mostrarHTML(data) {
       const productosContainer = document.querySelector('.product-list');
-      const minPrice = parseFloat(document.querySelector('#rangeFilterPriceMin').value);
-      const maxPrice = parseFloat(document.querySelector('#rangeFilterPriceMax').value);
+      const minPrice = parseInt(document.querySelector('#rangeFilterPriceMin').value);
+      const maxPrice = parseInt(document.querySelector('#rangeFilterPriceMax').value);
       const searchInput = document.querySelector('#searchInput').value.trim().toLowerCase(); 
       
   
@@ -33,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   
       let filteredData = data.filter(product => {
-        const productPrice = parseFloat(product.cost);
+        const productPrice = parseInt(product.cost);
   
         return ((isNaN(minPrice) || productPrice >= minPrice) &&
                 (isNaN(maxPrice) || productPrice <= maxPrice) &&
@@ -66,6 +53,20 @@ document.addEventListener("DOMContentLoaded", function() {
       productosContainer.innerHTML = htmlContent;
     }
   
+    function cargarProductos(catID) {
+      
+      const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+      fetch(url)
+        .then(response => response.json())
+        .then(resultado => {
+          searchData = resultado.products;
+          mostrarHTML(searchData);
+        })
+        .catch(error => console.error('Ocurrió un error:', error));
+    
+  }
+
+
     document.querySelector('#sortAsc').addEventListener('click', () => {
       sortOrder = 'asc';
       cargarProductos(catID);
