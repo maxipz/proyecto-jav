@@ -3,6 +3,9 @@ function ObtenerInfo(ID) {
     fetch(url)
       .then(response => response.json())
       .then(resultado => {
+       const Titulo = document.getElementById("Titulo");
+        Titulo.innerHTML = resultado.name;
+        
        const Precio = document.getElementById("Precio");
        Precio.innerHTML = "Precio " + resultado.cost;
 
