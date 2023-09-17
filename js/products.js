@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
       filteredData.forEach(product => {
         htmlContent += `
-          <div class="list-group-item list-group-item-action">
+          <div class="list-group-item list-group-item-action cursor-active" onclick="ObtenerId('${product.id}')">
             <div class="row">
               <div class="col-3">
                 <img src="${product.image}" alt="product image" class="img-thumbnail">
@@ -101,6 +101,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const catID = localStorage.getItem("catID");
     cargarProductos(catID);
     
-  });      
-
+  });   
+  
+function ObtenerId(Identificador) {
+localStorage.setItem("IdProducto", Identificador);
+window.location.href= "product-info.html"
+}
        
