@@ -1,4 +1,4 @@
-// PRIMERA PARTE ---------- (MAXI)
+
 window.onload = function () {
   const productId = localStorage.getItem("IdProducto");
   ObtenerInfo(productId);
@@ -6,7 +6,7 @@ window.onload = function () {
 };
 
 
-// SEGUNDA PARTE ------------------------------------(VALENTINA)
+
 function ObtenerInfo(ID) {
   const url = `https://japceibal.github.io/emercado-api/products/${ID}.json`;
   fetch(url)
@@ -50,7 +50,7 @@ function mostrarImagenes(producto) {
 }
 
 
-// TERCERA PARTE ---------------------------------------------------(ALEJNDRO)
+
 
 //Funcion para crear las estrellas 
 function starRating(rating){ 
@@ -83,8 +83,7 @@ const currentDate = new Date();
 
 
 
-// Comentarios
-// CUARTA PARTE ------------------------------------------------------------------------(CARLO)
+
 function ObtenerComentarios(ID) {
   const url = `https://japceibal.github.io/emercado-api/products_comments/${ID}.json`;
 
@@ -106,9 +105,7 @@ function ObtenerComentarios(ID) {
     .catch((error) => console.error("Ocurrió un error:", error));
 }
 
-// QUINTA PARTE (FORMULARIO HTML)------------------------------------------------------------------------(LAURO) 
 
-// SEXTA PARTE ------------------------------------------------------------------------------------------(BRUNO)
 function mostrarComentarioNuevo(nuevoComentario) {  //Funcion para agregar el comentario nuevo a la pagina
   const contenedorComentarios = document.getElementById('comentarios')
   let containerComentarioNuevo = `
