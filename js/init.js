@@ -62,3 +62,12 @@ if (atIndex !== -1) {
  userButton.innerHTML = "Bienvenido! " + userId;
 }};
 window.onload = logCheck();
+
+
+const logOut = document.getElementById("logOut");
+logOut.addEventListener("click", function() {
+  localStorage.removeItem('isLoggedIn');
+  window.location.href = "index.html";
+});
+
+
