@@ -288,3 +288,20 @@ a.custom-card:hover {
 .login-box a:hover {
   color: #fff;
 }
+
+/* Personalización para colocar las flechas dentro de la imagen */
+.carousel-control-prev, .carousel-control-next {
+  background: transparent;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10%;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo de las flechas */
+  border-radius: 100%;
+  color: white; /* Color de las flechas */
+  font-size: 20px; /* Tamaño de las flechas */
+  line-height: 1.7; /* Alineación vertical de las flechas */
+  padding: 20px; /* Espacio alrededor de las flechas */
+}

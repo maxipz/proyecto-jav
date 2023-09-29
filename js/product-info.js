@@ -35,17 +35,40 @@ function ObtenerInfo(ID) {
 }
 
 function mostrarImagenes(producto) {
-  //Se crea un funcion para mostrar las imagenes en un contenedor
-  let contenedorImagenes = "";
-  contenedorImagenes += '<div class="row">';
-  producto.images.forEach((element) => {
+  let contenedorImagenes = `
+    <div id="carouselControls" class="carousel slide w-75 mx-auto" data-bs-ride="carousel">
+      <div class="carousel-inner">
+  `;
+
+  producto.images.forEach((element, index) => {
+    const activeClass = index === 0 ? "active" : ""; // Agrega la clase 'active' al primer elemento
     contenedorImagenes += `
-    <div class="col-md-3">
-        <img class="img-thumbnail" src="${element}" alt="Imagen">
+      <div class="carousel-item ${activeClass} text-center">
+        <img src="${element}" class="d-block mx-auto custom-image" alt="Imagen ${
+      index + 1}">
+        <div class="carousel-caption">
+          <!-- Puedes agregar texto de la imagen si lo deseas -->
         </div>
+      </div>
     `;
   });
-  contenedorImagenes += "</div>";
+
+  contenedorImagenes += `
+      </div>
+
+      <!-- Botones de control para avanzar y retroceder -->
+      <a class="carousel-control-prev" href="#carouselControls" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </a>
+  
+      <a class="carousel-control-next" href="#carouselControls" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </a>
+    </div>
+  `;
+
   return contenedorImagenes;
 }
 
