@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,17 +23,26 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="categories.html">Categorías</a>
+            <a class="nav-link" href="categories.html">Categorías</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="userbutton"></a>
-          </li>
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle" type="button" id="userbutton" data-bs-toggle="dropdown" aria-expanded="false">
+              Inicia sesión
+            </a> 
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="#" id="logOut">Cerrar sesión</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button id="color-mode" class="btn">Cambiar a Dark</button></li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>
@@ -89,6 +98,7 @@
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      
     </div>
   </footer>
   <div id="spinner-wrapper">

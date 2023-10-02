@@ -62,3 +62,41 @@ if (atIndex !== -1) {
  userButton.innerHTML = "Bienvenido! " + userId;
 }};
 window.onload = logCheck();
+
+
+const logOut = document.getElementById("logOut");
+logOut.addEventListener("click", function() {
+  localStorage.removeItem('isLoggedIn');
+  window.location.href = "index.html";
+});
+
+
+// Cambiar el Background de la pagina
+const colorModeButton = document.querySelector('#color-mode');
+const body = document.body;
+
+// Recuperar el estado del modo de color desde localStorage (si existe)
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Inicializar el modo de color según lo que se encuentra en localStorage
+if (isDarkMode) {
+  body.classList.add("dark-mode");
+  colorModeButton.innerText = "Cambiar a Light";
+}
+
+colorModeButton.addEventListener("click", cambiarModoColor);
+
+function cambiarModoColor() {
+  body.classList.toggle("dark-mode");
+
+  // Guardar el estado del modo de color en localStorage
+  localStorage.setItem('darkMode', body.classList.contains("dark-mode"));
+
+  if (body.classList.contains("dark-mode")) {
+    colorModeButton.innerText = "Cambiar a Light";
+  } else {
+    colorModeButton.innerText = "Cambiar a Dark";
+  }
+}
+
+z
